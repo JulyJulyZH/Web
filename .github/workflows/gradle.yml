@@ -4,7 +4,6 @@ on: [push, pull_request]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -17,14 +16,8 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Start SUT
-        run: BROWSER="chrome"  
-              BROWSER="chrome"
-              if [ "$BROWSER" = "chrome" ]; then java -jar ./artifacts/app-order.jar --browser=chrome &
-              elif [ "$BROWSER" = "firefox" ]; then java -jar ./artifacts/app-order.jar --browser=firefox &
-              else    echo "Неизвестный браузер"
-              exit 1
-              fi
-      - name: Build with Gradle
-        run: ./gradlew test --info
-     
-    
+        run: java -jar ./artifacts/app-order.jar & # Имя файла SUT будет отличаться в каждой задаче
+      - name: Build and Test with Gradle
+        run: |
+          ./gradlew test --info -DSELENIUM_BROWSER=chrome
+       
