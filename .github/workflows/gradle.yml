@@ -19,5 +19,5 @@ jobs:
         run: java -jar ./artifacts/app-order.jar & # Имя файла SUT будет отличаться в каждой задаче
       - name: Build and Test with Gradle
         run: |
-          ./gradlew test --info -DSELENIUM_BROWSER=chrome
+          ./gradlew test --info -DSELENIUM_BROWSER=chrome -Dselenide.headless=true
        
