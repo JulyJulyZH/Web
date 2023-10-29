@@ -3,8 +3,7 @@ package ru.netology;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.selected;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -92,7 +91,7 @@ public class WebTest {
         $("[data-test-id=phone] input").setValue("+79270000000");
         $("button.button").click();
         $("[data-test-id=agreement] input").shouldNotBe(selected);
-        $("[data-test-id=agreement].input_invalid").isDisplayed();
+        $("[data-test-id=agreement].input_invalid").shouldBe(visible);
     }
 
 }
